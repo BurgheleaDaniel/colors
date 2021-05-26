@@ -33,8 +33,8 @@ class ColorController extends BaseController
         $input = $request->all();
 
         $validator = Validator::make($input, [
-            'name' => 'required|unique:colors',
-            'hex' => 'required|unique:colors'
+            'name' => 'required|unique:colors,name',
+            'hex' => 'required|unique:colors,hex'
         ]);
 
         if($validator->fails()) {
@@ -75,8 +75,8 @@ class ColorController extends BaseController
         $input = $request->all();
 
         $validator = Validator::make($input, [
-            'name' => 'required|unique:colors',
-            'hex' => 'required|unique:colors'
+            'name' => "required|unique:colors,name,{$color->id}",
+            'hex' => "required|unique:colors,hex,{$color->id}"
         ]);
 
         if($validator->fails()) {
